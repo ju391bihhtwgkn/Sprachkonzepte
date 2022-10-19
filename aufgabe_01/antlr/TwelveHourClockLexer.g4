@@ -1,5 +1,5 @@
 // ExprLexer.g4
-lexer grammar ExprLexer;
+lexer grammar TwelveHourClockLexer;
 
 
 Clock: Normal | Noon | Midnight ;
