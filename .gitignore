@@ -1,7 +1,7 @@
 build.xml
+*.java
 *.class
 *.jar
-*.nhtml
 *.interp
 *.tokens
 
