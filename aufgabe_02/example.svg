@@ -1,0 +1,145 @@
+<svg width="1868.9" height="436.70000000000005" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><line x1="492.625" y1="7.5" x2="83.5" y2="32.0" style="stroke:black; stroke-width:1px;" />
+<line x1="83.5" y1="39.5" x2="24.0" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="83.5" y1="39.5" x2="143.0" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="492.625" y1="7.5" x2="372.25" y2="32.0" style="stroke:black; stroke-width:1px;" />
+<line x1="372.25" y1="39.5" x2="272.5" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="372.25" y1="39.5" x2="355.0" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="355.0" y1="71.5" x2="322.75" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="355.0" y1="71.5" x2="387.25" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="387.25" y1="103.5" x2="357.25" y2="128.0" style="stroke:black; stroke-width:1px;" />
+<line x1="387.25" y1="103.5" x2="384.25" y2="128.0" style="stroke:black; stroke-width:1px;" />
+<line x1="387.25" y1="103.5" x2="417.25" y2="128.0" style="stroke:black; stroke-width:1px;" />
+<line x1="372.25" y1="39.5" x2="472.0" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="472.0" y1="71.5" x2="443.75" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="472.0" y1="71.5" x2="500.25" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="500.25" y1="103.5" x2="470.25" y2="128.0" style="stroke:black; stroke-width:1px;" />
+<line x1="500.25" y1="103.5" x2="497.25" y2="128.0" style="stroke:black; stroke-width:1px;" />
+<line x1="500.25" y1="103.5" x2="530.25" y2="128.0" style="stroke:black; stroke-width:1px;" />
+<line x1="492.625" y1="7.5" x2="640.625" y2="32.0" style="stroke:black; stroke-width:1px;" />
+<line x1="640.625" y1="39.5" x2="541.0" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="640.625" y1="39.5" x2="593.0" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="593.0" y1="71.5" x2="558.75" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="593.0" y1="71.5" x2="627.25" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="640.625" y1="39.5" x2="740.25" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="740.25" y1="71.5" x2="705.75" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="740.25" y1="71.5" x2="774.75" y2="96.0" style="stroke:black; stroke-width:1px;" />
+<line x1="492.625" y1="7.5" x2="901.75" y2="32.0" style="stroke:black; stroke-width:1px;" />
+<line x1="901.75" y1="39.5" x2="813.75" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<line x1="901.75" y1="39.5" x2="989.75" y2="64.0" style="stroke:black; stroke-width:1px;" />
+<rect x="772.25" y="64.0" width="83.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="774" y="73" style="font-family:sans-serif;font-size:10px;">
+Purpose·of·Trip:
+</text>
+<rect x="478.625" y="0.0" width="28.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="480" y="9" style="font-family:sans-serif;font-size:10px;">
+trip:1
+</text>
+<rect x="715.25" y="64.0" width="50.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="717" y="73" style="font-family:sans-serif;font-size:10px;">
+country:1
+</text>
+<rect x="516.25" y="128.0" width="28.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="518" y="137" style="font-family:sans-serif;font-size:10px;">
+2023
+</text>
+<rect x="238.0" y="64.0" width="69.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="240" y="73" style="font-family:sans-serif;font-size:10px;">
+Travel·Dates:
+</text>
+<rect x="370.25" y="96.0" width="34.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="372" y="105" style="font-family:sans-serif;font-size:10px;">
+date:1
+</text>
+<rect x="578.0" y="64.0" width="30.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="580" y="73" style="font-family:sans-serif;font-size:10px;">
+city:1
+</text>
+<rect x="411.25" y="96.0" width="65.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="413" y="105" style="font-family:sans-serif;font-size:10px;">
+Return·Date:
+</text>
+<rect x="862.25" y="64.0" width="255.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="864" y="73" style="font-family:sans-serif;font-size:10px;">
+·····[Discuss·sales·strategy·and·meet·with·clients.]
+</text>
+<rect x="875.25" y="32.0" width="53.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="877" y="41" style="font-family:sans-serif;font-size:10px;">
+purpose:1
+</text>
+<rect x="440.0" y="64.0" width="64.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="442" y="73" style="font-family:sans-serif;font-size:10px;">
+returnDate:1
+</text>
+<rect x="0.0" y="64.0" width="48.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="2" y="73" style="font-family:sans-serif;font-size:10px;">
+Trip·Title:
+</text>
+<rect x="338.25" y="32.0" width="68.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="340" y="41" style="font-family:sans-serif;font-size:10px;">
+travelDates:1
+</text>
+<rect x="683.25" y="96.0" width="45.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="685" y="105" style="font-family:sans-serif;font-size:10px;">
+Country:
+</text>
+<rect x="485.25" y="128.0" width="24.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="487" y="137" style="font-family:sans-serif;font-size:10px;">
+-11-
+</text>
+<rect x="546.25" y="96.0" width="25.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="548" y="105" style="font-family:sans-serif;font-size:10px;">
+City:
+</text>
+<rect x="608.125" y="32.0" width="65.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="610" y="41" style="font-family:sans-serif;font-size:10px;">
+destination:1
+</text>
+<rect x="282.25" y="96.0" width="81.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="284" y="105" style="font-family:sans-serif;font-size:10px;">
+Departure·Date:
+</text>
+<rect x="55.0" y="64.0" width="176.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="57" y="73" style="font-family:sans-serif;font-size:10px;">
+···[Sales·Conference·in·New·York]
+</text>
+<rect x="578.25" y="96.0" width="98.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="580" y="105" style="font-family:sans-serif;font-size:10px;">
+····[New·York·City]
+</text>
+<rect x="511.0" y="64.0" width="60.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="513" y="73" style="font-family:sans-serif;font-size:10px;">
+Destination:
+</text>
+<rect x="372.25" y="128.0" width="24.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="374" y="137" style="font-family:sans-serif;font-size:10px;">
+-11-
+</text>
+<rect x="60.0" y="32.0" width="47.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="62" y="41" style="font-family:sans-serif;font-size:10px;">
+tripTitle:1
+</text>
+<rect x="483.25" y="96.0" width="34.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="485" y="105" style="font-family:sans-serif;font-size:10px;">
+date:1
+</text>
+<rect x="349.25" y="128.0" width="16.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="351" y="137" style="font-family:sans-serif;font-size:10px;">
+21
+</text>
+<rect x="403.25" y="128.0" width="28.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="405" y="137" style="font-family:sans-serif;font-size:10px;">
+2023
+</text>
+<rect x="314.0" y="64.0" width="82.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="316" y="73" style="font-family:sans-serif;font-size:10px;">
+departureDate:1
+</text>
+<rect x="735.25" y="96.0" width="79.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="737" y="105" style="font-family:sans-serif;font-size:10px;">
+·[United·States]
+</text>
+<rect x="462.25" y="128.0" width="16.0" height="15.0" style="fill:orange; stroke:rgb(0,0,0);" rx="1"/>
+<text x="464" y="137" style="font-family:sans-serif;font-size:10px;">
+23
+</text>
+</svg>
