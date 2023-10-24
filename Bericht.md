@@ -49,4 +49,84 @@ java -cp ".;antlr-4.13.1-complete.jar" org.antlr.v4.gui.TestRig Time tokens -tok
 [@5,29:28='<EOF>',<EOF>,3:8]
 ````
 
+# Aufgabe 2.1
+Die folgende Sprache soll eine Reisedatenbeschreibung verstehen, die zb. wie folgt aussieht
+
+### Beispiel 1 
+````
+Trip Title: 
+   [Sales Conference in New York]
+
+Travel Dates:
+	Departure Date: 21-11-2023
+    Return Date:  23-11-2023
+
+Destination:
+    City:    [New York City]
+    Country: [United States]
+
+Purpose of Trip:     [Discuss sales strategy and meet with clients.]
+
+````
+Für den Lexer wurden dafür die jeweiligen Bezeichnungen als Token beschrieben.
+Die Einträge werden durch eckige Klammern erkannt, und können beliebig viele Zeichen enthalten.
+Das Datum besteht aus einem Tag einem Monat und einem Jahr. Da es bei dem Tag und Monat zu keinen Überschneidungen kommen soll, wurden
+dem Monat die Minus Zeichen zugewiesen. So besteht eine Eindeutigkeit.
+
+Im Parser setzt man nun die Bestandteile zusammen und fächert die Subkategorien weiter auf.
+Zb. 
+````
+travelDates: TRAVEL_DATES departureDate returnDate;
+
+departureDate: DEPARTURE_DATE date;
+returnDate: RETURN_DATE date;
+
+date: DAY MONTH YEAR;
+````
+
+
+Anschliessend wurde mit den Antlr-tools der Ableitungsbaum generiert mit dem Befehl
+
+````
+antlr4-parse .\TripLexer.g4 .\TripParser.g4 trip -gui ".\example.txt"
+````
+
+### Beispiel 1 (example.txt)
+![Beispiel1](aufgabe_02/example.svg)
+
+
+### Beispiel 2 (example2.txt)
+![Beispiel2](aufgabe_02/example2.svg)
+
+
+
+# Aufgabe 2.2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
