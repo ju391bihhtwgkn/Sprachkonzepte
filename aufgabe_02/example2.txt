@@ -1,0 +1,11 @@
+Trip Title:[Strandurlaub]
+
+Travel Dates:
+Departure Date: 01-12-2023
+Return Date: 31-01-2024
+
+Destination:
+    City:    [Koh Tao]
+    Country: [Thailand]
+
+Purpose of Trip:[Urlaub machen]
