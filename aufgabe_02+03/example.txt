@@ -1,0 +1,6 @@
+TripTitle: [Sales Conference in New York]
+DepartureDate: 21/11/2023
+ReturnDate: 23/11/2023
+City:    [New York City]
+Country: [United States]
+Purpose: [Discuss sales strategy and meet with clients.]
