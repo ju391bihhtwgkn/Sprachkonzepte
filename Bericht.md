@@ -1,6 +1,6 @@
 # Aufgabe 1.1
 
-**Regex:**\
+**Regex:**
 ````
 %+.{0,1}[\w\d$_-§"/(),=+-]*[.\d]*[dfegs]*
 ````
@@ -82,35 +82,52 @@ Anschliessend wurde mit den Antlr-tools der Ableitungsbaum generiert mit dem Bef
 antlr4-parse .\TripLexer.g4 .\TripParser.g4 trip -gui ".\example.txt"
 ````
 
-### Beispiel 1 (example.txt)
-![Beispiel1](aufgabe_02/example.svg)
+#### Beispiel 1 (example.txt)
+![Beispiel1](aufgabe_02+03/example.svg)
 
-
-### Beispiel 2 (example2.txt)
-![Beispiel2](aufgabe_02/example2.svg)
+#### Beispiel 2 (example2.txt)
+![Beispiel2](aufgabe_02+03/example2.svg)
 
 
 
 # Aufgabe 2.2
 
+Zuerst wurde der Java Lexer, Parser und Listener mit dem folgenden Befehl aus der Grammatik generiert:
+
+````
+antlr4 .\TripLexer.g4 .\TripParser.g4
+````
+
+Anschließend wurden die einzelnen Klassen erstellt die von der abstrakten Klasse "Trip" erben.
+- Line
+- Multiline
+- Value
+
+### TripToAst:
+Der Lexer liest einen CharStream welcher dann dem Parser übergeben wird.
+Durch den Parser wird der Parsetree erstellt und dem TripBuilder übergeben.
+
+### TripBuilder:
+Insgesamt dient der TripBuilder dazu, den Parsebaum zu durchlaufen und die darin enthaltenen Informationen in Form von 
+Trip-Objekten zu strukturieren. 
+Dabei wird ein Stack verwendet, um temporäre Trip-Objekte zu verwalten, während der Parsebaum durchlaufen wird.
+Er verarbeitet verschiedene Parser-Regeln wie "Value", "Line" und "Multiline" welche in den Exitfunktionen aufgegriffen 
+und verarbeitet werden.
+Dies ermöglicht die Erstellung eines hierarchisch strukturierten Objekts, das den analysierten Inhalt repräsentiert.
 
 
 
 
+# Aufgabe 3.1
+Die statische Semantik ist durch die Methode 'staticSemanticTest' in TripToAst umgesetzt.
+
+Es wird überprüft ob die Entries eine Länge von min 5 - max 50 Zeichen haben.
 
 
+# Aufgabe 3.2
+Die dynamische Semantik ist durch die Methode 'dynamicSemanticTest' in TripToAst umgesetzt.
 
-
-
-
-
-
-
-
-
-
-
-
+Wenn mind. zwei Daten im Text gefunden werden, wird überprüft ob das erste Datum zeitlich vor dem zweiten Datum liegt.
 
 
 

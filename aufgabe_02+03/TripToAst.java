@@ -11,8 +11,8 @@ public final class TripToAst {
     public static void main(String[] args) throws Exception {
         TripLexer lexer = new TripLexer(CharStreams.fromString(
                 "TripTitle: [Sales Conference in New York]\n" +
-                        "DepartureDate:    1/1/23\n" +
-                        "ReturnDate: 23/11/2023\n" +
+                        "DepartureDate:    1/1/2023\n" +
+                        "ReturnDate: 03/1/2023\n" +
                         "City:       [New York City]\n" +
                         "Country: [United States]\n" +
                         "Purpose:    [Discuss sales strategy and meet with clients.]"));
@@ -30,17 +30,19 @@ public final class TripToAst {
         if(staticSemanticTest(ast.toString())){
             System.out.println("Static Test successful");
         } else{
+            System.out.println("Static Test failed");
             System.exit(1);
         }
         if(dynamicSemanticTest(ast.toString())){
             System.out.println("Dynamic Test successful");
         } else{
+            System.out.println("Dynamic Test failed");
             System.exit(1);
         }
 
     }
 
-    /*Entry muss 5 - 20 Zeichen haben*/
+    /*Entry muss 5 - 50 Zeichen haben*/
     public static boolean staticSemanticTest(String ast) {
         int count = 0;
         int startIndex = -1;
@@ -48,10 +50,11 @@ public final class TripToAst {
             char c = ast.charAt(i);
             if (c == '[') {
                 startIndex = i;
+                count = 0;
             } else if (c == ']' && startIndex != -1) {
                 count += (i - startIndex + 1);
-                if(count < 5 && count > 20){
-                    System.out.println("Statischer Fehler, Entry hat nicht 5-20 Zeichen");
+                if(count < 5 || count > 50){
+                    System.out.println("Statischer Fehler, Entry hat nicht 5-50 Zeichen");
                     System.exit(1);
                 }
                 startIndex = -1;
@@ -61,18 +64,18 @@ public final class TripToAst {
     }
     
 
-    /*2. Datum muss zeitlich später sein als erstes*/
+    /*Zweites Datum muss zeitlich später sein als erstes*/
     public static boolean dynamicSemanticTest(String ast) {
         String datePattern = "(\\d{1,2}/\\d{1,2}/\\d{2,4})";
         Pattern pattern = Pattern.compile(datePattern);
         Matcher matcher = pattern.matcher(ast);
 
         int count = 0;
-        String[] dates = new String[2]; // Store up to two dates for comparison
+        String[] dates = new String[2];
 
         while (matcher.find()) {
             if (count >= 2) {
-                System.out.println("Found more than 2 DATE expressions. Comparing the first 2 dates.");
+                System.out.println("Mehr als 2 Daten gefunden - nur die ersten zwei werden überprüft!");
                 break;
             }
             dates[count] = matcher.group(1);
@@ -85,20 +88,24 @@ public final class TripToAst {
             if (date1Parts.length == 3 && date2Parts.length == 3) {
                 int day1 = Integer.parseInt(date1Parts[0]);
                 int month1 = Integer.parseInt(date1Parts[1]);
+                if(date1Parts[2].length() == 2){            //wenn jahr nur 2 Ziffern hat - zb statt 2023 nur 23
+                    date1Parts[2] = "20" + date1Parts[2];
+                }
                 int year1 = Integer.parseInt(date1Parts[2]);
+
 
                 int day2 = Integer.parseInt(date2Parts[0]);
                 int month2 = Integer.parseInt(date2Parts[1]);
+                if(date2Parts[2].length() == 2){            //wenn jahr nur 2 Ziffern hat - zb statt 2023 nur 23
+                    date2Parts[2] = "20" + date2Parts[2];
+                }
                 int year2 = Integer.parseInt(date2Parts[2]);
 
                 if (year1 < year2 || (year1 == year2 && month1 < month2) || (year1 == year2 && month1 == month2 && day1 < day2)) {
-                    System.out.println("The first date is earlier than the second date.");
                     return true;
                 } else if (year1 == year2 && month1 == month2 && day1 == day2) {
-                    System.out.println("The two dates are the same.");
                     return false;
                 } else {
-                    System.out.println("The first date is later than the second date.");
                     return false;
                 }
             }
