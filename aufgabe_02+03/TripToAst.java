@@ -12,7 +12,6 @@ public final class TripToAst {
         TripLexer lexer = new TripLexer(CharStreams.fromString(
                 "TripTitle: [Sales Conference in New York]\n" +
                         "DepartureDate:    1/1/2023\n" +
-                        "ReturnDate: 03/1/2023\n" +
                         "City:       [New York City]\n" +
                         "Country: [United States]\n" +
                         "Purpose:    [Discuss sales strategy and meet with clients.]"));
@@ -43,8 +42,17 @@ public final class TripToAst {
     }
 
     /**/
-    private static boolean dynamicSemanticTest(String string) {
-        return false;
+    private static boolean dynamicSemanticTest(String tripData) {
+        String departureDateRegex = "DepartureDate:";
+        String returnDateRegex = "ReturnDate:";
+
+        Pattern departureDatePattern = Pattern.compile(departureDateRegex);
+        Pattern returnDatePattern = Pattern.compile(returnDateRegex);
+
+        Matcher departureDateMatcher = departureDatePattern.matcher(tripData);
+        Matcher returnDateMatcher = returnDatePattern.matcher(tripData);
+
+        return departureDateMatcher.find() && returnDateMatcher.find();
     }
 
     /*Entry muss 5 - 50 Zeichen haben*/
