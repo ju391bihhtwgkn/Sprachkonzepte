@@ -14,9 +14,10 @@ public class Aufgabe01 {
             findFormatSpecifiers(input);
         }
     }
-//   %[argument_index$][flags][width][.precision]conversion
     public static void findFormatSpecifiers(String input) {
-        Pattern pattern = Pattern.compile("%+.{0,1}[\\w\\d$_-§\"/()=+-]*[.\\d]*[dfegs]*");
+
+        String regex = getFormatterRegex();
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
 
         int prevEnd = 0;
@@ -42,5 +43,21 @@ public class Aufgabe01 {
         }
 
         System.out.println();
+    }
+
+
+    //   according to java.util.Formatter
+    //   %[argument_index$][flags][width][.precision]conversion
+    private static String getFormatterRegex() {
+        String argumentIndexRegex = "%(\\d+\\$)?";
+        String flagsRegex = "([-#+ 0,(]*)";
+        String widthRegex = "(\\d+)?";
+        String precisionRegex = "(\\.\\d+)?";
+        String conversionRegex = "[a-zA-Z%]";
+
+        // Time-related specifiers
+        String timeSpecifierRegex = "[tT]([a-zA-Z])";
+
+        return argumentIndexRegex + flagsRegex + widthRegex + precisionRegex + "(" + timeSpecifierRegex + "|" + conversionRegex + ")";
     }
 }

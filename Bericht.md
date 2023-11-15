@@ -1,17 +1,58 @@
 # Aufgabe 1.1
 
 **Regex:**
-````
-%+.{0,1}[\w\d$_-§"/(),=+-]*[.\d]*[dfegs]*
-````
+
+according to java.util.Formatter:
+
+**%[argument_index$][flags][width][.precision]conversion**
+
+- The optional argument_index is a decimal integer indicating the position of the argument in the argument list. The first argument is referenced by "1$", the second by "2$", etc.
+
+- The optional flags is a set of characters that modify the output format. The set of valid flags depends on the conversion.
+
+- The optional width is a positive decimal integer indicating the minimum number of characters to be written to the output.
+
+- The optional precision is a non-negative decimal integer usually used to restrict the number of characters. The specific behavior depends on the conversion.
+
+- The required conversion is a character indicating how the argument should be formatted. The set of valid conversions for a given argument depends on the argument's data type.
+
+Da für Date/Time Conversions auf ein 't' oder 'T' ein weiterer Buchstabe folgt wird dies gesondert behandelt.
+
+Um die Übersicht zu behalten wird für jede Kategorie ein Regulärer Ausdruck erstellt:
 
 ````
-%+                       Einer oder mehr % 
-.{0,1}                   ein Char außer newline,  hiermit fängt man ein Whitespace ab welches auf ein % folgt 
-[\w\d$_-§"/()=+-]*       eine Zeichenfolge von Special Characters, Wörtern, Zahlen 
-[.\d]*                   fängt eine Floating Number ab falls existent 
-[dfegs]*                 Endet mit einem Precision Specifier falls existent 
+    private static String getFormatterRegex() {
+        String argumentIndexRegex = "%(\\d+\\$)?";
+        String flagsRegex = "([-#+ 0,(]*)";
+        String widthRegex = "(\\d+)?";
+        String precisionRegex = "(\\.\\d+)?";
+        String conversionRegex = "[a-zA-Z%]";
+
+        String timeSpecifierRegex = "[tT]([a-zA-Z])";
+
+        return argumentIndexRegex + flagsRegex + widthRegex + precisionRegex + "(" + timeSpecifierRegex + "|" + conversionRegex + ")";
+    }
 ````
+
+**Input**
+````
+xxx %d yyy%n
+xxx% 012d yyy%%
+xxx%1$d yyy
+%1$0+(32.10fyyy
+Wochentag: %tA Uhrzeit: %tT 
+````
+
+**Output**
+````
+TEXT("xxx ")FORMAT("%d")TEXT(" yyy")FORMAT("%n")
+TEXT("xxx")FORMAT("% 012d")TEXT(" yyy")FORMAT("%%")
+TEXT("xxx")FORMAT("%1$d")TEXT(" yyy")
+FORMAT("%1$0+(32.10f")TEXT("yyy")
+TEXT("Wochentag: ")FORMAT("%tA")TEXT(" Uhrzeit: ")FORMAT("%tT")
+````
+
+
 # Aufgabe 1.2
 Für den Lexer haben wir eine Rule Clock die den Token für eine Zeitangabe erkennt und an den Parser weitergeben kann.
 Weitere fragment Rules bauen die Logik des Uhrzeitformats auf.\
