@@ -1,6 +1,6 @@
 import java.util.regex.*;
 
-public class SPKOone {
+public class Aufgabe01 {
     public static void main(String[] args) {
         String[] inputs = {
             "xxx %d yyy%n",
@@ -14,7 +14,7 @@ public class SPKOone {
             findFormatSpecifiers(input);
         }
     }
-
+//   %[argument_index$][flags][width][.precision]conversion
     public static void findFormatSpecifiers(String input) {
         Pattern pattern = Pattern.compile("%+.{0,1}[\\w\\d$_-§\"/()=+-]*[.\\d]*[dfegs]*");
         Matcher matcher = pattern.matcher(input);

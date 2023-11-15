@@ -42,6 +42,11 @@ public final class TripToAst {
 
     }
 
+    /**/
+    private static boolean dynamicSemanticTest(String string) {
+        return false;
+    }
+
     /*Entry muss 5 - 50 Zeichen haben*/
     public static boolean staticSemanticTest(String ast) {
         int count = 0;
@@ -60,12 +65,13 @@ public final class TripToAst {
                 startIndex = -1;
             }
         }
+        staticSemanticTest2(ast);
         return true;
     }
     
 
-    /*Zweites Datum muss zeitlich später sein als erstes*/
-    public static boolean dynamicSemanticTest(String ast) {
+    /*Zweites Datum muss zeitlich nach dem ersten kommen*/
+    public static boolean staticSemanticTest2(String ast) {
         String datePattern = "(\\d{1,2}/\\d{1,2}/\\d{2,4})";
         Pattern pattern = Pattern.compile(datePattern);
         Matcher matcher = pattern.matcher(ast);

@@ -1,4 +1,4 @@
-public final class Line extends Trip {
+public final class Line extends Trip { //Namensgebung etwas unpassend
     public final String value;
     public final Trip right;
 
