@@ -80,3 +80,19 @@ zug(karlsruhe, 12.06, mainz, 13.47).
 zug(stuttgart, 11.51, mannheim, 12.28).
 zug(mannheim, 12.39, mainz, 13.18). 
 
+verbindung(Start, Abfahrtszeit, Ziel, Reiseplan) :-
+    zug(Start, Abfahrt, Ziel, Ankunft),
+    Abfahrt > Abfahrtszeit,
+    Reiseplan = [Start, Abfahrt, Ziel, Ankunft].
+
+verbindung(Start, Abfahrtszeit, Ziel, Reiseplan) :-
+    zug(Start, Abfahrt, Zwischenziel, Ankunft),
+    Abfahrt > Abfahrtszeit,
+    Reiseplan = [(Start, Abfahrt, Zwischenziel, Ankunft) | Reise],
+    verbindung(Zwischenziel, Ankunft, Ziel, Reise).
+
+?-verbindung(konstanz, 8.00, mainz, Reiseplan)
+Reiseplan = [(konstanz,8.39,offenburg,10.59), (offenburg,11.27,mannheim,12.24), mannheim, 12.39, mainz, 13.18]
+Reiseplan = [(konstanz,8.39,karlsruhe,11.49), karlsruhe, 12.06, mainz, 13.47]
+Reiseplan = [(konstanz,8.53,singen,9.26), (singen,9.37,stuttgart,11.32), (stuttgart,11.51,mannheim,12.28), mannheim, 12.39, mainz, 13.18]
+false
