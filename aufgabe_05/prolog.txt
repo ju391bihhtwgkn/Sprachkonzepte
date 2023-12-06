@@ -1,17 +1,22 @@
 5a)
+Matching der 2 Listen:
 
-Liste 2:
-Split in Head und Tail:
-p([1,2,3]).
-?- p([X|Y]).
+Regel:
+p(Liste1-Value). 	zb. p([X,Y,Z]).
 
-[john,likes,fish]
-[X|Y]
-[mary,likes,wine]
-[[X,hare],[is,here]]
-[golden,norfolk]
-[horse,X]
-[P,horse]
+Abfrage:
+?-p(Liste2-Value).	zb. ?-p([john,likes,fish]).
+
+Liste 1 	Liste 2 
+[X,Y,Z] 	[john,likes,fish]	=> X = john, Y = likes, Z = fish
+[cat] 		[X|Y]			=> X = cat, Y -> []
+[X,Y|Z] 	[mary,likes,wine]	=> X = mary, Y = likes, Z = [wine]
+[[the,Y]|Z] [[X,hare],[is,here]]	=> X = the, Y = hare Z = [[is, here]]
+[golden|T] 	[golden,norfolk]	=> T = [norfolk] 
+[white,horse] 	[horse,X]		=> false
+[white|Q] 	[P,horse]		=> P = white, Q = [horse]
+
+
 =========================
 
 fakultaet(0, 1).
