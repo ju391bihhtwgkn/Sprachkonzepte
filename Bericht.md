@@ -174,8 +174,124 @@ Wenn mind. zwei Daten im Text gefunden werden, wird überprüft ob das erste Dat
 
 
 
+# Aufgabe 5
+
+## Aufgabe 5a
+1. Matching der 2 Listen:
+
+````
+Regel:
+p(Liste1-Value). 	zb. p([X,Y,Z]).
+
+Abfrage:
+?-p(Liste2-Value).	zb. ?-p([john,likes,fish]). => X = john, Y = likes, Z = fish
+````
+
+2. Die Fakultät muss die Zahl N rekursiv mit N-1 multiplizieren:
+````
+fakultaet(N, Ergebnis) :-
+    N > 0,
+    N_minus_1 is N - 1,
+    fakultaet(N_minus_1, Ergebnis_minus_1),
+    Ergebnis is N * Ergebnis_minus_1.
+
+?-fakultaet(3, X).
+Ergebnis = 6
+````
+
+3. Funktion zum Konkatenieren von zwei Listen
+````
+append([],L,L).
+append([H|T1],L,[H|T2]) :- append(T1,L,T2).
+````
+append(X, Y, [1,2,3,4]).
+berechnet alle Möglichkeiten die die Ergebnisliste ausgeben:
+````
+X = [],
+Y = [1, 2, 3, 4]
+X = [1],
+Y = [2, 3, 4]
+X = [1, 2],
+Y = [3, 4]
+X = [1, 2, 3],
+Y = [4]
+X = [1, 2, 3, 4],
+Y = []
+````
+
+append(X, [1,2,3,4], Z).
+berechnet alle Möglichkeiten wenn Liste X mit Liste [1,2,3,4] appended wird.
+````
+X = [],
+Z = [1, 2, 3, 4]
+X = [_1368],
+Z = [_1368, 1, 2, 3, 4]
+X = [_1368, _1374],
+Z = [_1368, _1374, 1, 2, 3, 4]
+X = [_1368, _1374, _1380],
+Z = [_1368, _1374, _1380, 1, 2, 3, 4]
+...
+````
+unendlich viele Möglichkeiten
 
 
+## Aufgabe 5b
+Summenberechnung einer Liste ebenfalls rekursiv wie bei Fakultät:
+````
+sum([], 0).
+sum([Head|Tail], Sum) :-
+    sum(Tail, TailSum),
+    Sum is Head + TailSum.
+````
+
+Beispielausgabe:
+
+````
+?-sum([2, 3, 40, 5], Result).
+Result = 50
+````
 
 
+## Aufgabe 5c
 
+Gegebene Fakten:
+````
+zug(konstanz, 08.39, offenburg, 10.59).
+zug(konstanz, 08.39, karlsruhe, 11.49).
+zug(konstanz, 08.53, singen, 09.26).
+zug(singen, 09.37, stuttgart, 11.32).
+zug(offenburg, 11.27, mannheim, 12.24).
+zug(karlsruhe, 12.06, mainz, 13.47).
+zug(stuttgart, 11.51, mannheim, 12.28).
+zug(mannheim, 12.39, mainz, 13.18). 
+````
+Die Abfrage soll am Ende so gemacht werden:
+````
+?-verbindung(konstanz, 8.00, mainz, Reiseplan)
+````
+Um nun eine direkte Verbindung zu finden wie zb Konstanz - Offenburg wird folgendes Prädikat verwendet:
+
+````
+verbindung(Start, Abfahrtszeit, Ziel, Reiseplan) :-
+    zug(Start, Abfahrt, Ziel, Ankunft),
+    Abfahrt > Abfahrtszeit,
+    Reiseplan = [Start, Abfahrt, Ziel, Ankunft].
+````
+
+Um Zwischenziele verwenden zu können muss ein weiteres Prädikat hinzugefügt werden, welches verbindung rekursiv aufruft und die bestehende Reise weitergibt, damit der "Fahrplan" nicht verloren geht.
+````
+verbindung(Start, Abfahrtszeit, Ziel, Reiseplan) :-
+    zug(Start, Abfahrt, Zwischenziel, Ankunft),
+    Abfahrt > Abfahrtszeit,
+    Reiseplan = [(Start, Abfahrt, Zwischenziel, Ankunft) | Reise],
+    verbindung(Zwischenziel, Ankunft, Ziel, Reise).
+````
+
+Die Abfrage gibt anschließend 3 Möglichkeiten aus. Bei dem vierten Versuch kommt ein false da keine Möglichkeiten mehr gefunden werden.
+````
+?-verbindung(konstanz, 8.00, mainz, Reiseplan)
+Reiseplan = [(konstanz,8.39,offenburg,10.59), (offenburg,11.27,mannheim,12.24), mannheim, 12.39, mainz, 13.18]
+Reiseplan = [(konstanz,8.39,karlsruhe,11.49), karlsruhe, 12.06, mainz, 13.47]
+Reiseplan = [(konstanz,8.53,singen,9.26), (singen,9.37,stuttgart,11.32), (stuttgart,11.51,mannheim,12.28), mannheim, 12.39, mainz, 13.18]
+false
+````
