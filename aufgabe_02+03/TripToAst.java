@@ -1,3 +1,6 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,6 +15,7 @@ public final class TripToAst {
         TripLexer lexer = new TripLexer(CharStreams.fromString(
                 "TripTitle: [Sales Conference in New York]\n" +
                         "DepartureDate:    1/1/2023\n" +
+                        "ArrivalDate:    03/01/2023\n" +
                         "City:       [New York City]\n" +
                         "Country: [United States]\n" +
                         "Purpose:    [Discuss sales strategy and meet with clients.]"));
@@ -41,20 +45,6 @@ public final class TripToAst {
 
     }
 
-    /**/
-    private static boolean dynamicSemanticTest(String tripData) {
-        String departureDateRegex = "DepartureDate:";
-        String returnDateRegex = "ReturnDate:";
-
-        Pattern departureDatePattern = Pattern.compile(departureDateRegex);
-        Pattern returnDatePattern = Pattern.compile(returnDateRegex);
-
-        Matcher departureDateMatcher = departureDatePattern.matcher(tripData);
-        Matcher returnDateMatcher = returnDatePattern.matcher(tripData);
-
-        return departureDateMatcher.find() && returnDateMatcher.find();
-    }
-
     /*Entry muss 5 - 50 Zeichen haben*/
     public static boolean staticSemanticTest(String ast) {
         int count = 0;
@@ -73,13 +63,12 @@ public final class TripToAst {
                 startIndex = -1;
             }
         }
-        staticSemanticTest2(ast);
         return true;
     }
     
 
-    /*Zweites Datum muss zeitlich nach dem ersten kommen*/
-    public static boolean staticSemanticTest2(String ast) {
+    /**/
+    public static boolean dynamicSemanticTest(String ast) {
         String datePattern = "(\\d{1,2}/\\d{1,2}/\\d{2,4})";
         Pattern pattern = Pattern.compile(datePattern);
         Matcher matcher = pattern.matcher(ast);
@@ -97,6 +86,12 @@ public final class TripToAst {
         }
 
         if (count == 2) {
+            try {
+                System.out.println(parseDateString(dates[0]));
+                System.out.println(parseDateString(dates[1]));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             String[] date1Parts = dates[0].split("/");
             String[] date2Parts = dates[1].split("/");
             if (date1Parts.length == 3 && date2Parts.length == 3) {
@@ -116,6 +111,7 @@ public final class TripToAst {
                 int year2 = Integer.parseInt(date2Parts[2]);
 
                 if (year1 < year2 || (year1 == year2 && month1 < month2) || (year1 == year2 && month1 == month2 && day1 < day2)) {
+                    
                     return true;
                 } else if (year1 == year2 && month1 == month2 && day1 == day2) {
                     return false;
@@ -128,5 +124,24 @@ public final class TripToAst {
             return false;
         }
         return false;
+    }
+
+
+    public static Date parseDateString(String dateString) throws ParseException {
+        SimpleDateFormat[] dateFormats = {
+                new SimpleDateFormat("dd/MM/yyyy"),
+                new SimpleDateFormat("d/M/yyyy"),
+                new SimpleDateFormat("d/M/yy"),
+                new SimpleDateFormat("dd/MM/yy")
+        };
+        for (SimpleDateFormat dateFormat : dateFormats) {
+            try {
+                return dateFormat.parse(dateString);
+            } catch (ParseException e) {
+                // Ignore and try the next format
+            }
+        }
+
+        throw new ParseException("Unparseable date: " + dateString, 0);
     }
 }

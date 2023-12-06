@@ -168,10 +168,9 @@ Es wird überprüft ob die Entries eine Länge von min 5 - max 50 Zeichen haben.
 # Aufgabe 3.2
 Die dynamische Semantik ist durch die Methode 'dynamicSemanticTest' in TripToAst umgesetzt.
 
-Wenn mind. zwei Daten im Text gefunden werden, wird überprüft ob das erste Datum zeitlich vor dem zweiten Datum liegt.
-
-
-
+Wenn mind. zwei Daten im Text gefunden werden, wird überprüft ob das erste Datum zeitlich vor dem zweiten Datum liegt. 
+Zusätzlich wird eine weitere Verarbeitung des Asts durchgeführt:
+Die Daten werden in das importierte Datumsformat SimpleDateFormat weiterverarbeitet und die Funktion gibt ein Objekt des Typs Date zurück. Funktioniert das nicht kommt es zu einer ParseException.
 
 
 # Aufgabe 5
