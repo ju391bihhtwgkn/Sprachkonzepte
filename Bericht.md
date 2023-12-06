@@ -271,7 +271,7 @@ zug(karlsruhe, 12.06, mainz, 13.47).
 zug(stuttgart, 11.51, mannheim, 12.28).
 zug(mannheim, 12.39, mainz, 13.18). 
 ````
-Die Abfrage soll am Ende so gemacht werden:
+Die Abfrage soll wie folgend aussehen:
 ````
 ?-verbindung(konstanz, 8.00, mainz, Reiseplan)
 ````
