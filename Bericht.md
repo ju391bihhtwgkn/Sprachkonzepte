@@ -232,7 +232,13 @@ X = [_1368, _1374, _1380],
 Z = [_1368, _1374, _1380, 1, 2, 3, 4]
 ...
 ````
-unendlich viele Möglichkeiten
+unendlich viele sinnfreie Möglichkeiten
+
+mit Verwendung von Cut vermeidbar:
+````
+append([],L,L) :- !.
+append([H|T1],L,[H|T2]) :- append(T1,L,T2).
+````
 
 
 ## Aufgabe 5b
