@@ -1,0 +1,17 @@
+Aufgabe 4
+
+a) Procedural Stil?
+
+Die verwendung von Funktionen, die jeweils ihre spezifische Aufgabe haben. Dadurch wird die Aufgabe in mehrere kleine handhabbare Teile zerlegt.
+In das Programm wird eine LinkedList von Zeichenketten durch unsere 4 Funktionen manipuliert, um auf das gewünschte Ergebnis zu kommen.
+Es werden keine Klassen oder Objekte verwendet um Zustände zu speichern oder Verhalten zu kapseln. Alle Daten werden als Argumente den Funktionen geliefert
+und auch wieder zurückgegeben.
+
+c) Laufzeitvergleich
+
+Functional wird schneller durch verwendung von Java 8 Streams, es ermöglich gerade bei großen Datenmengen eine lazy Verarbeitung. Bei der Operationen nur ausgeführt werden,
+wenn sie auch benötigt werden. Vorallem gut bei Filteroperationen.
+
+Die eingelesenen Zeilen werden beim funktionalen nicht erst gespeichert, sondern direkt aus der Datei gelesen und verarbeitet.
+
+(Noch Beispiele von Test einfügen. 10000 - 10000000 Zeilen)
