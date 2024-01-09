@@ -300,3 +300,27 @@ Reiseplan = [(konstanz,8.39,karlsruhe,11.49), karlsruhe, 12.06, mainz, 13.47]
 Reiseplan = [(konstanz,8.53,singen,9.26), (singen,9.37,stuttgart,11.32), (stuttgart,11.51,mannheim,12.28), mannheim, 12.39, mainz, 13.18]
 false
 ````
+
+# Aufgabe 7
+Das Python Programm ruft die API feiertage-api.de mit den Parametern Jahr und Bundesland=Baden-Württemberg auf.
+Dabei werden die Feiertage die im JSON format ankommen mit dem aktuellen Datum abgeglichen und gefiltert sodass die nächsten Feiertage mit Wochentag ausgegeben werden.
+Die Ausgabe sieht wie folgt aus:
+```
+Es sind 12 Feiertage in diesem Jahr übrig.
+Die nächsten 3 Feiertage sind:
+
+Gründonnerstag am 2024-03-28 (Thursday)
+Karfreitag am 2024-03-29 (Friday)
+Ostermontag am 2024-04-01 (Monday)
+```
+
+Typische Eigenschaften von Scriptsprachen die hier verwendet wurden sind:
+
+- Syntax ist generell sehr einfach gehalten -> hohe Abstraktion auch durch Nutzung externer Bibliotheken
+- eine deklarationsfreie Syntax, sprich eine implizite Deklaration von Namen und eine dynamische Typisierung
+- automatische Speicherverwaltung, es wurde keine manuelle über gc o.Ä. benutzt
+- zeilenweise Interpretation, vor allem in Verbindung mit JupyterNotebook hilfreich für Entwicklungsprozess
+- Umgang mit Strings vereinfacht: variablen können in string eingefügt werden:
+```
+    api_url = f"https://feiertage-api.de/api/?jahr={year}&nur_land={bundesland}"
+```
