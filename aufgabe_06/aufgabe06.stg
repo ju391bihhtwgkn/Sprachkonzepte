@@ -18,7 +18,7 @@ aufgabe06(list) ::= <<
 >>
 
 classInfo(c) ::= <<
-<h2>$if(c.isInterface)$interface$else$class$endif$$c.name$:</h2>
+<h2>$if(c.isInterface)$interface $else$class $endif$$c.name$:</h2>
     <table>
         <tr>
             $if(c.isInterface)$
