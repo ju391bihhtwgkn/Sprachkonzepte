@@ -1,3 +1,4 @@
+
 // Generator.java
 import org.stringtemplate.v4.STGroupFile;
 import org.stringtemplate.v4.ST;
@@ -14,13 +15,12 @@ public final class Generator {
 		list.add(new ClassInfo(Class.forName("java.lang.String")));
 		list.add(new ClassInfo(Class.forName("java.util.Iterator")));
 		list.add(new ClassInfo(Class.forName("java.time.Month")));
-		
 
 		ST templ = new STGroupFile(args[0]).getInstanceOf("aufgabe06");
 		templ.add("list", list);
 		String result = templ.render();
 		System.out.println(result);
-	
+
 	}
 }
 
@@ -37,32 +37,32 @@ final class ClassInfo {
 		if (c.isInterface()) {
 			this.isInterface = true;
 			var currentInterface = new InterfaceInfo(c.getName());
-			for( var m : c.getMethods()) {
+			for (var m : c.getMethods()) {
 				var parameterTypes = Arrays.stream(m.getParameterTypes())
-					.map(Class::getName)
-					.collect(Collectors.joining(", "));
-				currentInterface.methods.add(m.getReturnType().getName() + " " + m.getName() + "(" + parameterTypes + ")");
+						.map(Class::getName)
+						.collect(Collectors.joining(", "));
+				currentInterface.methods
+						.add(m.getReturnType().getName() + " " + m.getName() + "(" + parameterTypes + ")");
 			}
 			this.interfaces.add(currentInterface);
 		} else {
-		for(var i : c.getInterfaces()) {
-			var currentInterface = new InterfaceInfo(i.getName());
+			for (var i : c.getInterfaces()) {
+				var currentInterface = new InterfaceInfo(i.getName());
 
-			for(var j : i.getMethods()) {
-				var parameterTypes = Arrays.stream(j.getParameterTypes())
-											.map(Class::getName)
-											.collect(Collectors.joining(", "));
-				currentInterface.methods.add(j.getReturnType().getName() + " " + j.getName() + "(" + parameterTypes + ")");
+				for (var j : i.getMethods()) {
+					var parameterTypes = Arrays.stream(j.getParameterTypes())
+							.map(Class::getName)
+							.collect(Collectors.joining(", "));
+					currentInterface.methods
+							.add(j.getReturnType().getName() + " " + j.getName() + "(" + parameterTypes + ")");
+				}
+
+				this.interfaces.add(currentInterface);
 			}
-
-			this.interfaces.add(currentInterface);
-		}
 		}
 	}
-	
 
 }
-
 
 final class InterfaceInfo {
 

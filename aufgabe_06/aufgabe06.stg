@@ -18,9 +18,7 @@ aufgabe06(list) ::= <<
 >>
 
 classInfo(c) ::= <<
-<h2>
-    $if(c.isInterface)$interface$else$class$endif$
-    $c.name$:</h2>
+<h2>$if(c.isInterface)$interface$else$class$endif$$c.name$:</h2>
     <table>
         <tr>
             $if(c.isInterface)$
@@ -29,25 +27,19 @@ classInfo(c) ::= <<
                 <th>Interface</th>
                 <th>Methods</th>
             $endif$
-            </tr>
-                $c.interfaces:interfaceInfo(); separator="\n"$
+        </tr>
+            $c.interfaces:interfaceInfo(); separator="\n"$
     </table>
-    <br>
-    >>
+<br>
+>>
 
 interfaceInfo(i)::= <<
 <tr>
     $if(c.isInterface)$
-    <td>
-        $i.methods :{ m | $m$ <br>
-        }$
-    </td>
+        <td>$i.methods :{ m | $m$ <br>}$</td>
     $else$
-    <td valign=top>$i.name$</td>
-    <td>
-        $i.methods :{ m | $m$ <br>
-        }$
-    </td>
+        <td valign=top>$i.name$</td>
+        <td>$i.methods :{ m | $m$ <br>}$</td>
     $endif$
 </tr>
 >>
