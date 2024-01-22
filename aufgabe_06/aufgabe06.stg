@@ -1,0 +1,54 @@
+// aufgabe06.stg
+delimiters "$", "$"
+
+aufgabe06(list) ::= <<
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <style type="text/css">
+        th, td { border-bottom: thin solid; padding: 4px; text-align: left; }
+        td { font-family: monospace }
+        </style>
+    </head>
+    <body>
+        <h1>Sprachkonzepte, Aufgabe 6</h1>
+        $list:classInfo(); separator="\n"$
+    </body>
+</html>
+>>
+
+classInfo(c) ::= <<
+<h2>
+    $if(c.isInterface)$interface$else$class$endif$
+    $c.name$:</h2>
+    <table>
+        <tr>
+            $if(c.isInterface)$
+                <th>Methods</th>
+            $else$
+                <th>Interface</th>
+                <th>Methods</th>
+            $endif$
+            </tr>
+                $c.interfaces:interfaceInfo(); separator="\n"$
+    </table>
+    <br>
+    >>
+
+interfaceInfo(i)::= <<
+<tr>
+    $if(c.isInterface)$
+    <td>
+        $i.methods :{ m | $m$ <br>
+        }$
+    </td>
+    $else$
+    <td valign=top>$i.name$</td>
+    <td>
+        $i.methods :{ m | $m$ <br>
+        }$
+    </td>
+    $endif$
+</tr>
+>>
+
