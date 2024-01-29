@@ -180,6 +180,78 @@ Dynamischer Teil der Semantikprüfung:
 - eine weitere Verarbeitung des Asts wird durchgeführt:
 Die Daten werden in das importierte Datumsformat SimpleDateFormat weiterverarbeitet und die Funktion gibt ein Objekt des Typs Date zurück. Funktioniert das nicht kommt es zu einer ParseException.
 
+# Aufgabe 4
+
+## Aufgabe 4a
+
+Das Aufrufen der einzelnen Methoden in Zeile 19-21 sind eindeutig im Proceduralen Stil. Sie akzeptieren
+Argumente als Parameter und mutieren diese als Seiteneffekt. Die einzelnen Methoden sind wiederrum
+ebenfalls stark Procedural durch die Verwendung von 
+Schleifen und bedingten Anweisungen um auf Daten 
+zuzugreifen und sie zu ändern.
+
+## Aufgabe 4b)
+
+Das auf den funktionalen Stil umgeänderte Programm:
+
+````
+public final class Functional {
+    private Functional() { }
+
+    private static final int MIN_LENGTH = 20;
+
+    public static void main(String[] args) throws IOException {
+        var input = Paths.get(args[0]);
+
+        long start = System.nanoTime();
+
+        int n = Files.lines(input)
+            .filter(line -> !line.isEmpty())
+            .filter(line -> line.length() >= MIN_LENGTH)
+            .mapToInt(String::length)
+            .sum();
+        
+    
+        
+        long stop = System.nanoTime();
+
+        System.out.printf("result = %d (%d microsec)%n", n, (stop - start) / 1000);
+    }
+}
+
+````
+
+## Aufgabe 4c)
+
+Um das Laufzeitverhalten zu überprüfen haben wir mehrmals mit geringer, mittlere und hoher Zeilenanzahl getestet.
+
+Bei kleinen Testdaten ist die Procedurale implementierung deutlich schneller. Das könnte am Overhead des Streams liegen,
+bei welchem viele temporäre Objekte erstellt und wieder freigeben werden müssen. Je größer die Testdaten werden umso
+schneller wird das Funktionale Programm im Vergleich zum Proceduralen. Eine Erklärung sind die Anzahl der
+Durchläufe der Daten. Das Procedurale durchläuft die
+Daten mehrmals. Einmal zum Lesen der Zeilen, zum Entfernen der leeren Zeilen und zum Entfernen der
+zu kurzen Zeilen. Das Funktionale Programm widerrum zu einmal.
+
+Zum anderen könnte die Verwendung
+der LinkedList die Laufzeit erhöhen. Weil die Entfernung von vielen Elementen zeitaufwändig sein kann, da die LinkedList jedes mal neu Organisiert werden muss. Das Procedurale braucht vermutlich bei
+großer Datenmenge mehr Speicher, da alle Daten gleichzeitig im Speicher gehalten werden. Beim 
+Funktionalen, wird durch Streams die lazy Verarbeitung
+ermöglicht wobei die Daten erst verarbeitet werden,
+wenn man sie braucht.
+
+````
+Testgröße:  355 Zeilen
+Procedural: 8848 microsec
+Funktional: 17380 microsec
+
+Testgröße:  2000 Zeilen
+Procedural: 27725 microsec
+Funktional: 18017 microsec
+
+Testgröße:  10000 Zeilen
+Procedural: 300007 microsec
+Funktional: 22326 microsec
+````
 
 # Aufgabe 5
 
@@ -308,6 +380,116 @@ Reiseplan = [(konstanz,8.39,karlsruhe,11.49), karlsruhe, 12.06, mainz, 13.47]
 Reiseplan = [(konstanz,8.53,singen,9.26), (singen,9.37,stuttgart,11.32), (stuttgart,11.51,mannheim,12.28), mannheim, 12.39, mainz, 13.18]
 false
 ````
+
+# Aufgabe 6
+
+Um eine Html-Datei im richtigen Format für beliebige 
+Java-Klassen -Interfaces zu generieren haben wir eine
+Stringtemplategroup-Datei mit den Templates aufgabe6, classInfo und interfaceInto erstellt.
+
+```
+delimiters "$", "$"
+
+aufgabe06(list) ::= <<
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <style type="text/css">
+        th, td { border-bottom: thin solid; padding: 4px; text-align: left; }
+        td { font-family: monospace }
+        </style>
+    </head>
+    <body>
+        <h1>Sprachkonzepte, Aufgabe 6</h1>
+        $list:classInfo(); separator="\n"$
+    </body>
+</html>
+>>
+
+classInfo(c) ::= <<
+<h2>$if(c.isInterface)$interface $else$class $endif$$c.name$:</h2>
+    <table>
+        <tr>
+            $if(c.isInterface)$
+                <th>Methods</th>
+            $else$
+                <th>Interface</th>
+                <th>Methods</th>
+            $endif$
+        </tr>
+            $c.interfaces:interfaceInfo(); separator="\n"$
+    </table>
+<br>
+>>
+
+interfaceInfo(i)::= <<
+<tr>
+    $if(c.isInterface)$
+        <td>$i.methods :{ m | $m$ <br>}$</td>
+    $else$
+        <td valign=top>$i.name$</td>
+        <td>$i.methods :{ m | $m$ <br>}$</td>
+    $endif$
+</tr>
+>>
+```
+
+Die Klassen ClassInfo und InterfaceInfo wurden erstellt
+um die notwendigen Informationen der Java-Klassen und -Interfaces bereitzustellen.
+
+```
+final class ClassInfo {
+	public final String name;
+	public LinkedList<InterfaceInfo> interfaces;
+	public boolean isInterface;
+
+	public ClassInfo(Class<?> c) {
+		this.name = c.getName();
+		this.interfaces = new LinkedList<>();
+		this.isInterface = false;
+
+		if (c.isInterface()) {
+			this.isInterface = true;
+			var currentInterface = new InterfaceInfo(c.getName());
+			for (var m : c.getMethods()) {
+				var parameterTypes = Arrays.stream(m.getParameterTypes())
+						.map(Class::getName)
+						.collect(Collectors.joining(", "));
+				currentInterface.methods
+						.add(m.getReturnType().getName() + " " + m.getName() + "(" + parameterTypes + ")");
+			}
+			this.interfaces.add(currentInterface);
+		} else {
+			for (var i : c.getInterfaces()) {
+				var currentInterface = new InterfaceInfo(i.getName());
+
+				for (var j : i.getMethods()) {
+					var parameterTypes = Arrays.stream(j.getParameterTypes())
+							.map(Class::getName)
+							.collect(Collectors.joining(", "));
+					currentInterface.methods
+							.add(j.getReturnType().getName() + " " + j.getName() + "(" + parameterTypes + ")");
+				}
+
+				this.interfaces.add(currentInterface);
+			}
+		}
+	}
+
+}
+
+final class InterfaceInfo {
+
+	public final String name;
+	public final LinkedList<String> methods;
+
+	public InterfaceInfo(String name) {
+		this.name = name;
+		this.methods = new LinkedList<>();
+	}
+}
+```
+
 
 # Aufgabe 7
 Das Python Programm ruft die API feiertage-api.de mit den Parametern Jahr und Bundesland=Baden-Württemberg auf.
