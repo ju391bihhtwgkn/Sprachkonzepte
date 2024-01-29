@@ -1,3 +1,5 @@
+Autoren: Julian Bihl, Tobias Mack
+Gruppe 8
 # Aufgabe 1.1
 
 **Regex:**
