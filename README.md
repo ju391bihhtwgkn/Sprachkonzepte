@@ -164,11 +164,12 @@ Die statische Semantik ist durch die Methode 'staticSemanticTest' in TripToAst u
 
 Es wird überprüft ob die Entries eine Länge von min 5 - max 50 Zeichen haben.
 
+So kann bereits vor Laufzeit geklärt werden ob ein Fehler auftritt.
 
 # Aufgabe 3.2
 Die dynamische Semantik ist durch die Methode 'dynamicSemanticTest' in TripToAst umgesetzt.
 
-Hier findet keine Überprüfung in dem Sinne statt, sondern eine Astverarbeitung.
+Hier findet keine Überprüfung in dem Sinne statt, sondern eine Astverarbeitung, also wird dies erst zur Laufzeit durchgeführt.
 
 Statischer Teil der Semantikprüfung:
 - Wenn mind. zwei Daten im Text gefunden werden, wird überprüft ob das erste Datum zeitlich vor dem zweiten Datum liegt. 
