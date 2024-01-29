@@ -34,12 +34,34 @@ public final class Procedural {
         }
     }
 
+    /*
     private static void removeEmptyLines(LinkedList<String> lines) {
         lines.removeIf(String::isEmpty);
     }
+    */
+    private static void removeEmptyLines(LinkedList<String> lines) {
+        for (int i = 0; i < lines.size() - 1; i++){
+            lines.remove("");
+        }
+    }
 
+
+    /*
     private static void removeShortLines(LinkedList<String> lines) {
         lines.removeIf(s -> s.length() < MIN_LENGTH);
+    }
+    */
+
+    private static void removeShortLines(LinkedList<String> lines) {
+        var list = new LinkedList<String>();
+        for (String line : lines) {
+            if (line.length()<MIN_LENGTH) {
+                list.add(line);
+            }
+        }
+        for (String shortLine : list) {
+            lines.remove(shortLine);
+        }
     }
 
     private static int totalLineLengths(LinkedList<String> lines) {
@@ -50,6 +72,4 @@ public final class Procedural {
 
         return num;
     }
-
-    // TODO: Klassenmethoden readLines, removeEmptyLines, removeShortLines, totalLineLengths
 }

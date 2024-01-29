@@ -24,5 +24,4 @@ public final class Functional {
 
         System.out.printf("result = %d (%d microsec)%n", n, (stop - start) / 1000);
     }
-    // TODO: Klassenmethoden readLines, removeEmptyLines, removeShortLines, totalLineLengths
 }
