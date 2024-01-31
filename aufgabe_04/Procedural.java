@@ -34,23 +34,31 @@ public final class Procedural {
         }
     }
 
-    /*
     private static void removeEmptyLines(LinkedList<String> lines) {
         lines.removeIf(String::isEmpty);
     }
-    */
+
+    
+    private static void removeShortLines(LinkedList<String> lines) {
+        lines.removeIf(s -> s.length() < MIN_LENGTH);
+    }
+
+    private static int totalLineLengths(LinkedList<String> lines) {
+        int num = 0;
+        for(String line: lines) {
+            num += line.length();
+        }
+        return num;
+    }
+    
+
+    /*
+    Lösung ohne Iteratorschleife
     private static void removeEmptyLines(LinkedList<String> lines) {
         for (int i = 0; i < lines.size() - 1; i++){
             lines.remove("");
         }
     }
-
-
-    /*
-    private static void removeShortLines(LinkedList<String> lines) {
-        lines.removeIf(s -> s.length() < MIN_LENGTH);
-    }
-    */
 
     private static void removeShortLines(LinkedList<String> lines) {
         var list = new LinkedList<String>();
@@ -64,12 +72,5 @@ public final class Procedural {
         }
     }
 
-    private static int totalLineLengths(LinkedList<String> lines) {
-        int num = 0;
-        for(String line: lines) {
-            num += line.length();
-        }
-
-        return num;
-    }
+    */
 }
