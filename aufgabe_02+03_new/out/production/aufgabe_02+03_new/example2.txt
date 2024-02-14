@@ -1,0 +1,5 @@
+DepartureDate: 1/3/23
+TripTitle: [Beach Holiday.]
+City:    [Miami]
+Country: [United States]
+ReturnDate: 3/04/23

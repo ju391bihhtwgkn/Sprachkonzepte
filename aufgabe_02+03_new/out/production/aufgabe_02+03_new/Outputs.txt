@@ -1,0 +1,31 @@
+
+======================================================================
+Output bei Verletzung der semantischen Regel:
+
+Statische Überprüfung erfolgreich: Entry < 50
+Exception in thread "main" java.lang.RuntimeException: Entry ist länger als 50 Zeichen.
+	at TripBuilder.enterEntryvalue(TripBuilder.java:52)
+	at TripParser$EntryvalueContext.enterRule(TripParser.java:358)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.enterRule(ParseTreeWalker.java:50)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:33)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at TripBuilder.build(TripBuilder.java:19)
+	at TripToAst.main(TripToAst.java:31)
+
+Process finished with exit code 1
+
+======================================================================
+
+
+Output bei Verletzung der dynamischen Semantik:
+
+
+
+

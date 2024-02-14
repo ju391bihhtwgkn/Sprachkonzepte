@@ -1,0 +1,89 @@
+Grammatik wurde geändert in TripParser.g4
+value: datevalue | entryvalue ;
+datevalue: TITLE DATE;
+entryvalue: TITLE ENTRY;
+
+2b)
+Trip Objekt enthält nun eine Liste von Line Referenzen, die entweder ein DateLine oder EntryLine Objekt sind.
+ParseTrees für Beispiele example1.txt und example2.txt
+generiert mit: antlr4-parse .\TripLexer.g4 .\TripParser.g4 start -gui ".\example.txt"
+antlr4_parse_tree_example1.png
+antlr4_parse_tree_example2.png
+======================================================================
+3a)
+statische Semantik findet nun direkt beim Erzeugen des AST-Objekts im TripBuilder statt:
+
+if(entryLine.check()){
+    System.out.println("Statische Überprüfung erfolgreich: Entry < 50 ");
+}else {
+    throw new RuntimeException("Entry ist länger als 50 Zeichen.");
+}
+
+
+======================================================================
+3b)
+dynamische Semantik wird in TripToAst durchgeführt anhand einer Weiterverarbeitung des ASTs
+-> Dates werden geparsed und verglichen -> Exception falls Datum nicht valide ist
+
+LocalDate startDate = ast.findTripStartDate();
+System.out.println("Trip starts on: " + startDate);
+
+
+
+======================================================================
+Output bei Verletzung der semantischen Regel:
+
+Statische Überprüfung erfolgreich: Entry < 50
+Exception in thread "main" java.lang.RuntimeException: Entry ist länger als 50 Zeichen.
+	at TripBuilder.enterEntryvalue(TripBuilder.java:52)
+	at TripParser$EntryvalueContext.enterRule(TripParser.java:358)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.enterRule(ParseTreeWalker.java:50)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:33)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at org.antlr.v4.runtime.tree.ParseTreeWalker.walk(ParseTreeWalker.java:36)
+	at TripBuilder.build(TripBuilder.java:19)
+	at TripToAst.main(TripToAst.java:31)
+
+Process finished with exit code 1
+
+======================================================================
+
+
+Output eines funktionierenden ASTs (+ Verletzung der dynamischen Semantik):
+
+Statische Überprüfung erfolgreich: Entry < 50
+Statische Überprüfung erfolgreich: Entry < 50
+Statische Überprüfung erfolgreich: Entry < 50
+Statische Überprüfung erfolgreich: Entry < 50
+
+Trip.toString() =
+Trip:
+  EntryLine@769c9116
+  DateLine@6aceb1a5
+  DateLine@2d6d8735
+  EntryLine@ba4d54
+  EntryLine@12bc6874
+  EntryLine@de0a01f
+
+Parse Tree:
+  EntryLine: TripTitle: ([Sales Conference in New York])
+  DateLine: ArrivalDate: (1/111/24)
+  DateLine: DepartureDate: (03/01/2023)
+  EntryLine: City: ([New York City])
+  EntryLine: Country: ([United States])
+  EntryLine: Purpose: ([Discuss sales strategy and meet with clients.])
+
+Exception in thread "main" InvalidDateFormatException: Invalides Datumsformat: 1/111/24
+	at DateLine.getDateAsLocalDate(DateLine.java:43)
+	at Trip.findTripStartDate(Trip.java:41)
+	at TripToAst.main(TripToAst.java:35)
+
+Process finished with exit code 1
+
+
