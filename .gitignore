@@ -1,7 +1,5 @@
 build.xml
-*.java
 *.class
-*.jar
 *.interp
 *.tokens
 *.metals
